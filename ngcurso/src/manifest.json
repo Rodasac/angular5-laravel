@@ -1,0 +1,22 @@
+{
+  "dir": "ltr",
+  "lang": "es",
+  "name": "Ngcurso",
+  "scope": "/",
+  "display": "fullscreen",
+  "start_url": "http://localhost:4000/",
+  "short_name": "Ngcurso Angular PWA",
+  "theme_color": "transparent",
+  "description":
+    "Ngcurso - Pruebas para integrar una PWA Angular con una API Laravel",
+  "orientation": "any",
+  "background_color": "transparent",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32"
+    }
+  ]
+}

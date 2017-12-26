@@ -1,0 +1,46 @@
+{
+  "index": "/index.html",
+  "appData": {
+    "test": true
+  },
+  "assetGroups": [
+    {
+      "name": "appshell",
+      "resources": {
+        "files": ["/assets/**/*", "!/ngsw-worker.js"],
+        "versionedFiles": ["/**/*.html", "/**/*.js", "/**/*.css"],
+        "urls": [
+          "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css",
+          "https://code.jquery.com/jquery-3.2.1.slim.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js",
+          "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js",
+          "https://use.fontawesome.com/releases/v5.0.2/js/all.js"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-freshness",
+      "urls": [
+        "/admin/images/edit",
+        "/admin/images/create"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "4h",
+        "timeout": "10s",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "api-performance",
+      "urls": ["/", "/admin", "/gallery", "/admin/images", "http://localhost:8000/api/v1/images"],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "1d",
+        "strategy": "performance"
+      }
+    }
+  ]
+}
