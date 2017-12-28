@@ -2,7 +2,9 @@
   "name": "ngcurso",
   "version": "0.0.0",
   "license": "MIT",
-  "contributors": ["Adolfo Bastardo <abastardo@liberarte.org.ve>"],
+  "contributors": [
+    "Adolfo Bastardo <abastardo@liberarte.org.ve>"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,17 +12,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ngu-sw-manifest":
-      "ts-node ./node_modules/ng-pwa-tools/bin/ngu-sw-manifest.js --module src/app/app.module.ts --out dist/ngsw-manifest.json",
-    "build:universal":
-      "npm run build:client-and-server-bundles && npm run webpack:server",
+    "ngu-sw-manifest": "ts-node ./node_modules/ng-pwa-tools/bin/ngu-sw-manifest.js --module src/app/app.module.ts --out dist/ngsw-manifest.json",
+    "build:universal": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:universal": "node dist/server.js",
-    "build:client-and-server-bundles":
-      "ng build --prod && ng build --prod --app 1 --output-hashing=false",
-    "webpack:server":
-      "webpack --config webpack.server.config.js --progress --colors",
-    "build:prerender":
-      "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:prerender",
+    "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
+    "build:prerender": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:prerender",
     "generate:prerender": "cd dist && node prerender",
     "serve:prerender": "cd dist/browser && http-server -p 4000"
   },
@@ -40,7 +37,10 @@
     "@angular/upgrade": "^5.0.0",
     "@nguniversal/express-engine": "^5.0.0-beta.5",
     "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.5",
+    "angular-async-local-storage": "^3.1.0",
+    "angular2-indexeddb": "^1.2.2",
     "core-js": "^2.4.1",
+    "expdata": "^1.2.5",
     "ng-pwa-tools": "0.0.15",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"

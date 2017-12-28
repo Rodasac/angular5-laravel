@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { ImageService } from './services/image.service';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { ServiceWorkerModule } from '@angular/service-worker'
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 
 import { AppComponent } from './app.component';
 import { NuevoComponent } from './nuevo/nuevo.component';
@@ -43,11 +44,12 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ngcurso' }),
+    AsyncLocalStorageModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpModule,
     HttpClientModule,
-    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [ImageService],
   bootstrap: [AppComponent]

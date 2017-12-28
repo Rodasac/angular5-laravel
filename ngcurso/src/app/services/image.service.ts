@@ -5,15 +5,37 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 // tslint:disable-next-line:import-blacklist
 import { Observable } from 'rxjs/Rx';
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 @Injectable()
 export class ImageService {
-  constructor(private http: Http) {}
+  constructor(private http: Http, protected localStorage: AsyncLocalStorage) {
+  }
 
   getImages(): Observable<Image[]> {
     return this.http
       .get('http://localhost:8000/api/v1/images')
-      .map((response: Response) => response.json());
+      .map((response: Response) => {
+          const resp = response.json();
+          this.localStorage.removeItem('images').subscribe(() => {});
+          this.localStorage.setItem('images', resp).subscribe(() => {});
+          return resp;
+      })
+      .catch((error) =>
+      {
+        let img: Observable<Image[]>;
+        this.localStorage.getItem<Observable<Image[]>>('images').subscribe((images) => {
+          if(images != null) {
+            img = images;
+          }
+        }, (error) => {
+          img = Observable.throw(
+            error.json().error || { message: 'Error del servidor' }
+          );
+        });
+        
+        return img;
+      });
   }
 
   addImage(image: Object): Observable<Image[]> {
